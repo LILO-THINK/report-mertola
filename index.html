@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Mertola Report</title>
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="css/lilothink-report.css" id="theme" />
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+	<link rel="stylesheet" href="css/layout.css" />
+	<link rel="stylesheet" href="plugin/customcontrols/style.css">
+	<link rel="stylesheet" href="plugin/chalkboard/style.css">
+
+
+
+    <script defer src="dist/fontawesome/all.min.js"></script>
+
+	<script type="text/javascript">
+		var forgetPop = true;
+		function onPopState(event) {
+			if(forgetPop){
+				forgetPop = false;
+			} else {
+				parent.postMessage(event.target.location.href, "app://obsidian.md");
+			}
+        }
+		window.onpopstate = onPopState;
+		window.onmessage = event => {
+			if(event.data == "reload"){
+				window.document.location.reload();
+			}
+			forgetPop = true;
+		}
+
+		function fitElements(){
+			const itemsToFit = document.getElementsByClassName('fitText');
+			for (const item in itemsToFit) {
+				if (Object.hasOwnProperty.call(itemsToFit, item)) {
+					var element = itemsToFit[item];
+					fitElement(element,1, 1000);
+					element.classList.remove('fitText');
+				}
+			}
+		}
+
+		function fitElement(element, start, end){
+
+			let size = (end + start) / 2;
+			element.style.fontSize = `${size}px`;
+
+			if(Math.abs(start - end) < 1){
+				while(element.scrollHeight > element.offsetHeight){
+					size--;
+					element.style.fontSize = `${size}px`;
+				}
+				return;
+			}
+
+			if(element.scrollHeight > element.offsetHeight){
+				fitElement(element, start, size);
+			} else {
+				fitElement(element, size, end);
+			}		
+		}
+
+
+		document.onreadystatechange = () => {
+			fitElements();
+			if (document.readyState === 'complete') {
+				if (window.location.href.indexOf("?export") != -1){
+					parent.postMessage(event.target.location.href, "app://obsidian.md");
+				}
+				if (window.location.href.indexOf("print-pdf") != -1){
+					let stateCheck = setInterval(() => {
+						clearInterval(stateCheck);
+						window.print();
+					}, 250);
+				}
+			}
+	};
+
+
+        </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template"><!-- .slide: class="drop" data-background-image="/3 RESOURCES/ASSETS/ID LILOTHINK/report-cover.png" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<style>
+body {
+	background-color: rgba(0,0,0,0) !important;
+}
+</style>
+
+
+
+
+<div class="fill-deep-purple pb-16 scale-4" style="position: absolute; left: 30%; top: 42.5%; height: 15%; width: 40%; display: flex; flex-direction: column; align-items: center; justify-content: center" >
+
+
+<svg width="525" height="136">
+<path d="M158.849 95.9386C152.602 95.9386 147.624 94.1005 143.916 90.4243C140.208 86.697 138.354 81.2592 138.354 74.111V62.0101C138.354 54.8619 140.208 49.4496 143.916 45.7734C147.624 42.0461 152.602 40.1825 158.849 40.1825C165.097 40.1825 170.074 42.0461 173.782 45.7734C177.49 49.4496 179.344 54.8619 179.344 62.0101V74.111C179.344 81.2592 177.49 86.697 173.782 90.4243C170.074 94.1005 165.097 95.9386 158.849 95.9386ZM158.849 91.4965C163.827 91.4965 167.662 89.9903 170.354 86.9778C173.097 83.9654 174.468 79.7275 174.468 74.2642V61.8569C174.468 56.3936 173.097 52.1557 170.354 49.1433C167.662 46.1308 163.827 44.6246 158.849 44.6246C153.922 44.6246 150.087 46.1308 147.345 49.1433C144.602 52.1557 143.23 56.3936 143.23 61.8569V74.2642C143.23 79.7275 144.602 83.9654 147.345 86.9778C150.087 89.9903 153.922 91.4965 158.849 91.4965Z"></path>
+<path d="M223.165 40.1874H231.453V95.99H223.165V40.1874Z"></path>
+<path d="M204.661 51.2366L210.522 45.3452L249.774 84.8036L243.914 90.695L204.661 51.2366Z"></path>
+<path d="M254.969 63.826V72.1576L199.457 72.1576V63.826L254.969 63.826Z"></path>
+<path d="M243.982 45.3453L249.842 51.2366L210.59 90.695L204.729 84.8037L243.982 45.3453Z"></path>
+<path d="M40 95.9899V40H45.1114V91.3507H74.5018V95.9899H40Z"></path>
+<path d="M83.6763 95.9899V40H88.7877V95.9899H83.6763Z"></path>
+<path d="M100.502 95.9899V40H105.613V91.3507H135.003V95.9899H100.502Z"></path>
+<path d="M283.028 95.99V47.9998H265.959V40.1874H308.67V47.9998H291.602V95.99H283.028Z"></path>
+<path d="M316.441 95.99V40.1874H325.015V64.1028H348.356V40.1874H356.93V95.99H348.356V71.9152H325.015V95.99H316.441Z"></path>
+<path d="M368.54 95.99V40.1874H377.114V95.99H368.54Z"></path>
+<path d="M388.697 95.99V40.1874H405.21L420.294 90.2503H421.564V40.1874H430.059V95.99H413.546L398.462 45.8474H397.192V95.99H388.697Z"></path>
+<path d="M441.649 95.99V40.1874H450.223V63.3853H451.493L472.214 40.1874H483.407L458.321 67.6901L484.281 95.99H472.769L451.493 72.3137H450.223V95.99H441.649Z"></path>
+</svg>
+
+</div>
+<div class="deep-purple" style="position: absolute; left: 10%; top: 60%; height: 40%; width: 80%; display: flex; flex-direction: column; align-items: center; justify-content: flex-start" align="top">
+
+## Mértola School
+### May 2024 - Portugal
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" data-background-image="/3 RESOURCES/ASSETS/ID LILOTHINK/summary.png" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="deep-purple" style="position: absolute; left: 0%; top: 0%; height: 30%; width: 40%; display: flex; flex-direction: column; align-items: center; justify-content: center" >
+
+# Summary
+</div>
+
+
+<div class="font-highlight deep-purple fs-4 ps-30" style="position: absolute; left: 20%; top: 20%; height: 80%; width: 80%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+
+1. [About this document](#/2)
+2. [Numbers](#/4)
+3. [Context](#/7)
+4. [Who we met](#/11)
+5. [Methodology used](#/13)
+6. [Discovery](#/28)
+7. [Next step](#/30)
+
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" data-background-image="/3 RESOURCES/ASSETS/ID LILOTHINK/bg-chapter-dp-1.png" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="font-title turquoise fs-10" style="position: absolute; left: 30%; top: 20%; height: 60%; width: 70%; display: flex; flex-direction: column; align-items: center; justify-content: center" >
+
+# About this document
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" data-background-image="/3 RESOURCES/ASSETS/ID LILOTHINK/bg-gray.png" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="bg-pink font-title turquoise fs-10" style="position: absolute; left: 0%; top: 0%; height: 100%; width: 40%; display: flex; flex-direction: column; align-items: center; justify-content: center" >
+
+ <video data-autoplay controls loop muted width="1080" height="960"><source src="https://live.staticflickr.com/video/53784076418/2e8f32518c/1080p.mp4?s=eyJpIjo1Mzc4NDA3NjQxOCwiZSI6MTcxOTIzODUyNCwicyI6Ijc4NGFjZDk3YmFlZDk1MWU1ZWU1N2I0YzBkNzQ5YmI5YzY1M2JkN2QiLCJ2IjoxfQ"></video>
+</div>
+
+<div class="font-text fw-light deep-purple px-2" style="position: absolute; left: 50%; top: 0%; height: 100%; width: 50%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+## Why this document?
+This document is to report the experience of 2 days at **Mértola School** in Portugal. 
+
+The school is part of EIRA project organized by Buinho Educativo.
+
+This document is **only** for Buinho group and EIRA specialists team.
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" data-background-image="/3 RESOURCES/ASSETS/ID LILOTHINK/bg-chapter-pink-1.png" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="font-title gray-green fs-10" style="position: absolute; left: 30%; top: 15%; height: 70%; width: 70%; display: flex; flex-direction: column; align-items: flex-end; justify-content: space-evenly" align="right">
+
+# Numbers
+## A description of the school by quantities
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-dark-background drop" data-background-color="transparent" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="bg-pink font-title deep-purple fw-bold ps-5" style="position: absolute; left: 0%; top: 0%; height: 10%; width: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+May 2024
+</div>
+
+<div class="font-text deep-purple fw-light ps-5" style="position: absolute; left: 10%; top: 10%; height: 80%; width: 80%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+## Mértola Numbers
+**350 students** only at the visited unit (from 5th to 12th grade), 500 students considering the entire group with all three cycles.
+
+**20 students** per class.
+
+Classes start at 9 a.m. Each class lasts **90 minutes**. There are 4 classes per day, and students leave around 6 p.m.
+
+**54 teachers** working 27 periods of 45 minutes (24 of which are in the classroom) +10 hours of preparation, test correction, administration
+
+
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-dark-background drop" data-background-color="transparent" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="bg-pink font-title deep-purple fw-bold ps-5" style="position: absolute; left: 0%; top: 0%; height: 10%; width: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+May 2024
+</div>
+
+
+## TechLab Numbers
+- 3 3D printers and more equipment are expected to arrive; 
+- 1 Lego Mindstorms Kit; 
+- 1 Interactive screen; 
+- Various notebooks, the school is part of a government program that distributes one notebook per student; 
+- Various tables and chairs; Lockers.
+
+
+<!-- .element: style="display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" class="font-text deep-purple px-5" drag="80 80" align="left" -->
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" data-background-image="/3 RESOURCES/ASSETS/ID LILOTHINK/bg-chapter-tur-1.png" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="font-title deep-purple fs-10" style="position: absolute; left: 30%; top: 20%; height: 60%; width: 70%; display: flex; flex-direction: column; align-items: center; justify-content: center" >
+
+# Context
+## A more detailed structure
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-dark-background drop" data-background-color="transparent" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="bg-turquoise font-title deep-purple fw-bold ps-5" style="position: absolute; left: 0%; top: 0%; height: 10%; width: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+Educational Flow
+</div>
+
+
+<img src="3 RESOURCES/ASSETS/Excalidraw/Sketch_2024-06-06 16.42.22.excalidraw.svg" alt="" style="width: .svgpx; object-fit: fill">
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-dark-background drop" data-background-color="transparent" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="bg-turquoise font-title deep-purple fw-bold ps-5" style="position: absolute; left: 0%; top: 0%; height: 10%; width: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+Subjects
+</div>
+
+<div class="font-title deep-purple fs-2 ps-5" style="position: absolute; left: 0%; top: 10%; height: 50%; width: 50%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+## Mandatory
+- Portuguese
+- English
+- Mathematics
+- History and Geography (separated in the 3rd cycle)
+- Natural Sciences (separated in the 3rd cycle)
+- Music Education (not available in the 3rd cycle)
+- Visual Education
+- Physical Education
+- Technological Education
+- **ICT (Information and Communication Technologies)**
+- Citizenship (not available in the 3rd cycle)
+
+
+</div>
+
+<div class="font-title deep-purple fs-2 ps-5" style="position: absolute; left: 50%; top: 10%; height: 50%; width: 50%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+## Optional
+- Study Support
+- School Offer (a type of reinforcement): Science@ in the 3rd cycle; Communication in French and Communication in English; Arts.
+
+
+
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-dark-background drop" data-background-color="transparent" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="bg-turquoise font-title deep-purple fw-bold ps-5" style="position: absolute; left: 0%; top: 0%; height: 10%; width: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+Tech Lab
+</div>
+
+<div class="bg-turquoise font-title fs-10" style="position: absolute; left: 0%; top: 0%; height: 100%; width: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center" >
+
+ <video data-autoplay controls loop muted width="1080" height="960"><source src="https://live.staticflickr.com/video/53783858566/5cc581f206/1080p.mp4?s=eyJpIjo1Mzc4Mzg1ODU2NiwiZSI6MTcxOTIzODUwNSwicyI6ImEwYTBmMTE5OTA4ZDcyYjQ4NjljOGNmNjQzZDg1NDRmYWQ3MWUwNjEiLCJ2IjoxfQ"></video>
+</div>
+
+<div class="font-title deep-purple fs-3 ps-5" style="position: absolute; left: 55%; top: 10%; height: 50%; width: 40%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+# The makerspace
+It's called the Tech Lab and it was a donation from a ICT teacher who worked at the school and then continued his career in technology at a private company. At the end of his life, he donated the equipment to the school. He passed away in 2021 and the Tech Lab opened in 2023.
+
+The Tech Lab space is a room of approximately 38 square meters and an adjoining room. Currently, it has the equipment (notebooks and 3D printers listed previously) and also part of the school's archive (inactive).
+
+
+
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" data-background-image="/3 RESOURCES/ASSETS/ID LILOTHINK/bg-chapter-pink-2.png" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="font-title gray-green fs-10" style="position: absolute; left: 30%; top: 15%; height: 70%; width: 70%; display: flex; flex-direction: column; align-items: flex-end; justify-content: space-evenly" align="right">
+
+# Who we met
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-dark-background drop" data-background-color="transparent" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="bg-pink font-title deep-purple fw-bold ps-5" style="position: absolute; left: 0%; top: 0%; height: 10%; width: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+People
+</div>
+
+<div class="font-title fs-10" style="position: absolute; left: 0%; top: 25%; height: 50%; width: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center" >
+
+ <img src="https://live.staticflickr.com/65535/53784184629_9f853fe9bb_k.jpg" width="100%" ></img>
+ </div>
+
+<div class="font-title deep-purple fs-3 ps-5" style="position: absolute; left: 50%; top: 10%; height: 50%; width: 50%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+# People
+- **Júlio Silva**, director of the school.
+- **Sérgio Laranjinha**, Teacher of ICT (Information and Communication Technologies) for 8th, 9th, High School and Technical.
+- **Guiomar**, Teacher of ICT (Information and Communication Technologies) for 5th, 6th, High School and Technical.
+- **Ana**, Inspector from the government about health and infrastructure of the school.
+- **Ema and Lara**, two students of the High School in the 12th/Humanities.
+- **José Tomás Oliveira**, Chief Geologist of the Science Club of the school.
+- Some people of the staff
+
+
+
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" data-background-image="/3 RESOURCES/ASSETS/ID LILOTHINK/bg-chapter-tur-2.png" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="font-title deep-purple fs-10" style="position: absolute; left: 30%; top: 15%; height: 70%; width: 70%; display: flex; flex-direction: column; align-items: flex-end; justify-content: space-evenly" align="right">
+
+# Methodology used
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-dark-background drop" data-background-color="transparent" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="bg-turquoise font-title deep-purple fw-bold ps-5" style="position: absolute; left: 0%; top: 0%; height: 10%; width: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+</div>
+
+# Methodology
+
+**Day 1**
+Tour
+and Interviews
+
+
+**Day 2**
+Structured Interview
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" data-background-image="/3 RESOURCES/ASSETS/ID LILOTHINK/bg-chapter-dp-1.png" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="font-title gray-green fs-10" style="position: absolute; left: 30%; top: 15%; height: 70%; width: 70%; display: flex; flex-direction: column; align-items: flex-end; justify-content: space-evenly" align="right">
+
+# Day 1
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-dark-background drop" data-background-color="transparent" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="bg-deep-purple font-title pink fw-bold ps-5" style="position: absolute; left: 0%; top: 0%; height: 10%; width: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+Day 1
+</div>
+
+<div class="font-title deep-purple fs-3 ps-5" style="position: absolute; left: 25%; top: 15%; height: 70%; width: 50%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+## Tour 
+- Living Science Room - mainly Geology
+- Web Space - with interactive screen and tablets
+- Computer Lab - for ICT classes
+- Classroom for Restaurant/Hotel Management
+- Classroom for Special Education Students (with cognitive deficits)
+- Cafeteria (for lunch)
+- Tech Lab - the school's makerspace
+
+
+
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-dark-background drop" data-background-color="transparent" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="bg-deep-purple font-title pink fw-bold ps-5" style="position: absolute; left: 0%; top: 0%; height: 10%; width: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+Day 1
+</div>
+
+<div class="font-title deep-purple fs-3 ps-5 bg-pink" style="position: absolute; left: 0%; top: 10%; height: 50%; width: 50%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+## Mrs Guiomar
+- Believes that the school and the group of teachers need **more time** to meet all the requirements of the Ministry of Education.
+- The **logistics** for the students are complicated with buses having specific schedules.
+
+
+
+</div>
+
+<div class="font-title deep-purple fs-3 ps-5 bg-turquoise" style="position: absolute; left: 50%; top: 10%; height: 80%; width: 50%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+## Mr Sergio Laranjinha
+- One laptop per student project. At the end of the year when they have to return them, about 12% come back with defects. Fewer computers for the next year.
+- SIM cards with internet disappeared at the students' homes. The government stopped paying the telecommunications company, resulting in a contract breach.
+- Students don't know how to organize files. They send "open" files.
+
+
+
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-dark-background drop" data-background-color="transparent" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="bg-deep-purple font-title pink fw-bold ps-5" style="position: absolute; left: 0%; top: 0%; height: 10%; width: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+Day 1
+</div>
+
+
+<div class="font-title deep-purple fs-3 ps-5" style="position: absolute; left: 0%; top: 10%; height: 50%; width: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+## Ms Ana
+A government employee sent once a year to assess the school's health, classroom infrastructure, and the condition of the bathrooms and kitchens. She does not collect samples; the government seems to have hired a company to handle microbiota collection and analyses. Ana has a more technical background, and we took the opportunity to introduce her to the makerspace.
+- Ana commented that the school addressed none of the adjustments she pointed out last year.
+- I asked Ana if she could share some items from the list. Many potential ideas to connect with the Tech Lab:
+1. Damaged blinds curtain
+2. Physical space - bathroom infrastructure
+3. Swallow nest
+
+
+
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-dark-background drop" data-background-color="transparent" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="bg-deep-purple font-title pink fw-bold ps-5" style="position: absolute; left: 0%; top: 0%; height: 10%; width: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+Day 1
+</div>
+
+<div class="font-title deep-purple fs-2 ps-5" style="position: absolute; left: 0%; top: 10%; height: 70%; width: 50%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+## Lunch with Júlio, Sérgio and Sônia
+- They don't know much about Discord and consider it a platform for gaming. It seems there was a case of pedophilia involving students from the school using the platform.
+- They have polarized opinions about the biochip. They believe that on the one hand, it can invade privacy, and on the other hand, it can save lives.
+- Maps, Instagram, conversations next to the phone, NSA... many topics involving privacy.
+
+
+
+</div>
+
+<div class="font-title deep-purple fs-2 ps-5 bg-gray-green" style="position: absolute; left: 50%; top: 10%; height: 70%; width: 50%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+## Students Ema and Lara 
+- They are from the 12th grade.
+- They explained to me that in the last year, students are divided based on the skills they want to pursue in university: humanities or sciences.
+- It takes them an average of 30 minutes to travel between home and school.
+- Lara wants to study Psychology. She is from Lisbon and moved to the area because her grandparents are very old and her parents came to take care of them.
+- I asked if they knew about the digital fabrication lab / #makerspace. They said they didn't know what it was.
+- After explaining what it was, I asked if they saw any connection between the #makerspace and the area they wanted to pursue. They commented that it seemed more relevant for the sciences, not for humanities.
+- I mentioned #VR and treatments involving mental health. Lara had no idea about this.
+
+
+
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-dark-background drop" data-background-color="transparent" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="bg-deep-purple font-title pink fw-bold ps-5" style="position: absolute; left: 0%; top: 0%; height: 10%; width: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+
+</div>
+
+<div class="font-text fs-2 pink" style="position: absolute; left: 0%; top: 25%; height: 50%; width: 35%; display: flex; flex-direction: column; align-items: center; justify-content: center" >
+
+<a data-flickr-embed="true" target="_blank" href="https://flic.kr/s/aHBqjBuyWs" title="Mértola School"><img src="https://live.staticflickr.com/65535/53782920677_000a16b68e_k.jpg" width="100%" ></img>Click here to see more pictures</a>
+ </div>
+
+<div class="font-text fw-light deep-purple px-2" style="position: absolute; left: 40%; top: 0%; height: 100%; width: 50%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+## Day 1 Analysis
+
+- Notes on the lack of time to implement new classes that use the Tech Lab.
+- Broken notebooks at the end of the year. Not directly related to the Tech Lab, but somehow it's using up space and the ICT teachers' time.
+- The impression that both Guiomar and Sérgio see the glass as half empty. Perhaps the school doesn't need a makerspace but rather therapy.
+
+
+
+
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" data-background-image="/3 RESOURCES/ASSETS/ID LILOTHINK/bg-chapter-pink-2.png" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="font-title gray-green fs-10" style="position: absolute; left: 30%; top: 15%; height: 70%; width: 70%; display: flex; flex-direction: column; align-items: flex-end; justify-content: space-evenly" align="right">
+
+# Day 2
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-dark-background drop" data-background-color="transparent" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="bg-pink font-title deep-purple fw-bold ps-5" style="position: absolute; left: 0%; top: 0%; height: 10%; width: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+Structured Interview on the Need for Flexibility/Space/Time
+</div>
+
+<div class="font-title deep-purple fs-1 ps-5" style="position: absolute; left: undefined%; top: undefined%; height: 80%; width: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+### Part 1
+
+**Lina**: You are going to make a dinner for 50 people and at the end, you want to give each of them an apple. How many apples will you buy? 
+
+**Sérgio**: 50 apples. I don't know if everyone likes apples.
+
+**Lina**: What if 5 apples have a problem that you only noticed during the dinner? One had a worm inside, another was rotten, etc. Were these things under your control? 
+
+**Sérgio**: Shall we share? I can offer mine too.
+
+**Lina**: Next week you are going to make a dinner for 50 people again, and at the end, you want to give each of them an orange. How many oranges will you buy? What did you learn from the previous dinner? 
+
+**Sérgio**: 50 oranges. Look at the experience and analyze if all the apples were eaten.
+
+**Lina**: This time only one orange had a worm. What will you do with the remaining ones? 
+
+**Sérgio**: I'll give mine.
+
+**Lina**: At your third dinner, you want to offer pears, but your supplier only has 45 pears. How many people will you invite to the dinner? 
+
+**Sérgio**: I'll continue to invite 50. I encourage sharing, finding a shared solution.
+
+
+
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-dark-background drop" data-background-color="transparent" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="bg-pink font-title deep-purple fw-bold ps-5" style="position: absolute; left: 0%; top: 0%; height: 10%; width: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+Structured Interview on the Need for Flexibility/Space/Time
+</div>
+
+<div class="font-title deep-purple fs-1 ps-5" style="position: absolute; left: undefined%; top: undefined%; height: 80%; width: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+### Part 2
+
+**Lina**: Now you have a school with 50 students. You want to offer a tablet to each one. How many tablets will you buy? 
+
+**Sérgio**: 50 tablets.
+
+**Lina**: What if 2 tablets arrive defective? 
+
+**Sérgio**: I will contact the supplier to resolve the problem. They are still under warranty.
+
+**Lina**: While the supplier takes time, what will you do? (at this point, the interview became less structured and more fluid). 
+
+**In the classroom** 
+
+**Sérgio**: I'll pair up the students. I'll see which students can work together. If there are protests, I'll pair everyone up and put away the 23 tablets. 
+
+**For homework** 
+
+**Sérgio**: I'll try to propose an activity that doesn't depend on the tablet, maybe using a smartphone. 
+
+**Lina**: Did you consider sharing the tablet for homework? 
+
+**Sérgio**: Our students are capable of doing homework in pairs. 
+
+**Lina**: Did you consider buying 60 tablets instead of 50? 
+
+**Sérgio**: No, because the school doesn't have the budget.
+
+
+
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-dark-background drop" data-background-color="transparent" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="bg-pink font-title deep-purple fw-bold ps-5" style="position: absolute; left: 0%; top: 0%; height: 10%; width: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+Structured Interview on the Need for Flexibility/Space/Time
+</div>
+
+<div class="font-title deep-purple fs-1 ps-5" style="position: absolute; left: undefined%; top: undefined%; height: 80%; width: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+### Part 3
+**Lina**: Is there training on how to use the notebooks, tablets, or any equipment that the student takes home? 
+
+**Sérgio**: The school's nutrition is seen differently. There are children who go hungry, without proper nutrition at home, and the school tries to improve nutrition and guide families on how to make do with what they have at home. And for the digitally excluded? We have basic training for guardians/parents when they come to pick up the computers. It's increasingly important to bring the school closer to the parents. <mark style="background: #FFB8EBA6;">How can I use technology to bring parents closer to their children's education?</mark> Android, iPhone, so many different platforms, how to unite them? <mark style="background: #FFB8EBA6;">What can be useful and easy?</mark> And it should also protect privacy.
+
+From the interview, Sérgio's character is: **generous, experienced, improvisational, respects hierarchy**
+
+
+
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-dark-background drop" data-background-color="transparent" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="bg-pink font-title deep-purple fw-bold ps-5" style="position: absolute; left: 0%; top: 0%; height: 10%; width: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+Day 2
+</div>
+
+<div class="font-title deep-purple fs-1 ps-5" style="position: absolute; left: undefined%; top: undefined%; height: 80%; width: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+## 5 Whys
+**Lina**: Why do you, Sergio, want to create a #makerspace ecosystem here at the school? 
+
+**Sérgio**: Because I came into contact with it and it showed me a reality I didn't know. There have to be other ways to transmit knowledge beyond the traditional methods. 
+
+**Lina**: Why do there have to be other ways to transmit knowledge beyond the traditional methods? 
+
+**Sérgio**: Because generations change, what is obvious to one generation is not the same for another generation. It has to be more fun because the traditional method doesn't work. 
+
+**Lina**: Why do you think generations change? 
+
+**Sérgio**: It's part of how relationships change, the world changes, and people change. My grandfather used to ride a cart. The internet changed the world. My generation went to the library, today everything is on the smartphone. The problem is knowing how to correctly extract information. 
+
+**Lina**: Why is it important to know how to extract information correctly? 
+
+**Sérgio**: To know how to apply it at the right time and also because human beings need to be thinking, critical beings. 
+
+**Lina**: Why do human beings need to be thinking/critical and self-critical beings? 
+
+**Sérgio**: Only with a lot of knowledge and critical thinking can one decide for themselves. Children are not born doing this. 
+
+**Lina**: What do we call the ability to know how to choose for oneself?
+
+In summary, Sérgio wants a makerspace at the school to generate: <mark style="background: #FFB8EBA6;">An education based on more autonomy. Children are not born doing this; it is part of the evolutionary process.</mark>
+
+
+
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-dark-background drop" data-background-color="transparent" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="bg-pink font-title deep-purple fw-bold ps-5" style="position: absolute; left: 0%; top: 0%; height: 10%; width: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+Day 2
+</div>
+<div class="font-title fs-2 pink" style="position: absolute; left: 0%; top: 25%; height: 50%; width: 40%; display: flex; flex-direction: column; align-items: center; justify-content: center" >
+
+<a data-flickr-embed="true" href="https://www.flickr.com/photos/200845412@N02/53784076128/in/dateposted-public/" title="Mértola School"><img src="https://live.staticflickr.com/65535/53784076128_0be20bac4c_k.jpg" width="100%" ></img>Click here to see more pictures</a>
+ </div>
+
+<div class="font-text fw-light deep-purple px-2 fs-3" style="position: absolute; left: 40%; top: 5%; height: 90%; width: 60%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+## Class Flow
+
+**Lina**: What is your class like? Describe step by step the experience of a 9th-grade class. Draw it on a timeline and state the average times for each step.
+
+**Sérgio**: The class is 90 minutes long. In the first 5/10 minutes, the students arrive, turn on their computers, and open the platform. Half of the class is more step-by-step. The second half is them using what they learned more freely and with small challenges.
+
+**Lina**: How can the structure of ICT classes be utilized to start the maker ecosystem? A class in the 8th or 9th grade, for example, which you mentioned has 3D modeling on the computer...
+
+**Sérgio**: In this case, it might be better to start with the first year of ICT at the school, which is the 5th grade. They have lessons on what a computer is, and the operating system. Maybe the Micro could be an option...
+
+
+
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-dark-background drop" data-background-color="transparent" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="bg-pink font-title pink fw-bold ps-5" style="position: absolute; left: 0%; top: 0%; height: 10%; width: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+Day 2
+</div>
+
+<div class="font-text fs-2 pink" style="position: absolute; left: 0%; top: 25%; height: 50%; width: 35%; display: flex; flex-direction: column; align-items: center; justify-content: center" >
+
+<a data-flickr-embed="true" target="_blank" href="https://flic.kr/s/aHBqjBuyWs" title="Mértola School"><img src="https://live.staticflickr.com/65535/53784076258_58cea1d574_z.jpg" width="100%" ></img>Click here to see more pictures</a>
+ </div>
+ 
+<div class="font-text fw-light deep-purple px-2 fs-3" style="position: absolute; left: 40%; top: 0%; height: 100%; width: 60%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+## Day 2 Analysis
+- The ICT teachers, **Guiomar and Sérgio, are well-prepared to create a maker ecosystem starting with the ICT classes**. They just need to review the curriculum to meet the demands of the Ministry of Education. The government specifies what needs to be done, but how it is done is up to them. They have the experience and are capable of making the necessary modifications to the classes.
+- I mentioned that Carlos from Buinho Educativo has a **teacher training program in Micro:bit** that could be a good option for the school.
+- The idea is not to change everything at once, but to **redesign a 5th-grade curriculum** that can at least include 2 classes in the Tech Lab using Micro:bit. In This way, the students will be excited for the 6th grade and so on.
+
+
+
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" data-background-image="/3 RESOURCES/ASSETS/ID LILOTHINK/bg-chapter-dp-1.png" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="font-title turquoise fs-10" style="position: absolute; left: 30%; top: 20%; height: 60%; width: 70%; display: flex; flex-direction: column; align-items: center; justify-content: center" >
+
+# Discovery
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-dark-background drop" data-background-color="transparent" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="bg-turquoise font-title pink fw-bold ps-5" style="position: absolute; left: 0%; top: 0%; height: 10%; width: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+Discovery
+</div>
+
+<div class="font-title turquoise fs-10" style="position: absolute; left: 0%; top: 0%; height: 100%; width: 30%; display: flex; flex-direction: column; align-items: center; justify-content: center" >
+
+<img src="3 RESOURCES/ASSETS/Excalidraw/Sketch_2024-06-07 09.36.13.excalidraw.svg" alt="" style="width: .svgpx; object-fit: fill">
+
+</div>
+
+<div class="font-text fw-light deep-purple px-2 fs-2" style="position: absolute; left: 30%; top: 10%; height: 80%; width: 70%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+## Identification
+
+The findings from the two days at the School of Mértola identified the following areas:
+
+1. Redesign the 5th-grade curriculum to incorporate the Micro:bit platform. To achieve this:
+
+- Micro:bit training for ICT teachers and possibly other interested teachers.
+- Purchase of Micro:bit kits for a class of 20 students.
+
+2. Redesign the Tech Lab room to create an autonomous and versatile space for student use. Discussions with Sérgio included:
+
+- Encouraging a maker computer club.
+- Providing a broom and dustpan to help with the cleaning process.
+- Moving student desks to the center and placing printer benches along the walls with the tools. Stackable chairs and other arrangements.
+
+3. Consider how to use technology to bring parents and the school closer together without relying on WhatsApp and ensuring privacy. Additionally, educate families on the proper use of school equipment when at home.
+
+
+
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" data-background-image="/3 RESOURCES/ASSETS/ID LILOTHINK/bg-chapter-dp-1.png" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="font-title turquoise fs-10" style="position: absolute; left: 30%; top: 20%; height: 60%; width: 70%; display: flex; flex-direction: column; align-items: center; justify-content: center" >
+
+# Next Steps
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-dark-background drop" data-background-color="transparent" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="bg-deep-purple font-title pink fw-bold ps-5" style="position: absolute; left: 0%; top: 0%; height: 10%; width: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+What is next?
+</div>
+
+<div class="font-title turquoise fs-10" style="position: absolute; left: 0%; top: 0%; height: 100%; width: 30%; display: flex; flex-direction: column; align-items: center; justify-content: center" >
+
+<img src="3 RESOURCES/ASSETS/Excalidraw/Sketch_2024-06-07 09.36.13.excalidraw.svg" alt="" style="width: .svgpx; object-fit: fill">
+
+</div>
+
+<div class="font-text fw-light deep-purple px-2 fs-3" style="position: absolute; left: 30%; top: 10%; height: 80%; width: 70%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+# Next steps
+To follow up on the findings, my suggestion is:
+
+1. Prioritize **Micro:bit training** for teachers (ICT teachers and anyone else interested).
+
+2. Conduct a **2-day immersion** (after completing the training) to redesign the 5th and 6th grade curriculum, incorporating Micro:bit into at least 2 lessons each year, together with the responsible teachers.
+
+
+
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" data-background-image="/3 RESOURCES/ASSETS/ID LILOTHINK/bg-chapter-tur-3.png" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="fs-6 deep-purple" style="" >
+
+<a href="?print-pdf"><h1>Click here to print this document as a PDF</h1></a>
+</div>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" data-background-image="/3 RESOURCES/ASSETS/ID LILOTHINK/bg-chapter-pink-5.png" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 1080px; width: 1920px; min-height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="deep-purple" style="position: absolute; left: 30%; top: 40%; height: 20%; width: 30%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+## Lina Lopes
+
+lina@lilothink.science
+
+www.lilothink.science
+</div>
+
+<div class="deep-purple fs-2" style="position: absolute; left: 30%; top: 80%; height: 5%; width: 30%; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+São Paulo - Brazil
+
+Luzern - Switzerland
+</div>
+</div></script></section></div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/math/math.js"></script>
+	<script src="plugin/mermaid/mermaid.js"></script>
+	<script src="plugin/chart/chart.min.js"></script>
+	<script src="plugin/chart/plugin.js"></script>
+	<script src="plugin/menu/menu.js"></script>
+	<script src="plugin/customcontrols/plugin.js"></script>
+	<script src="plugin/chalkboard/plugin.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+	  function isLight(color) {
+		let hex = color.replace('#', '');
+
+		// convert #fff => #ffffff
+		if(hex.length == 3){
+			hex = `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
+		}
+
+		const c_r = parseInt(hex.substr(0, 2), 16);
+		const c_g = parseInt(hex.substr(2, 2), 16);
+		const c_b = parseInt(hex.substr(4, 2), 16);
+		const brightness = ((c_r * 299) + (c_g * 587) + (c_b * 114)) / 1000;
+		return brightness > 155;
+	}
+
+	var bgColor = getComputedStyle(document.documentElement).getPropertyValue('--r-background-color').trim();
+	var isLight = isLight(bgColor);
+
+	if(isLight){
+		document.body.classList.add('has-light-background');
+	} else {
+		document.body.classList.add('has-dark-background');
+	}
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath.MathJax3,
+		  RevealMermaid,
+		  RevealChart,
+		  RevealCustomControls,
+		  RevealMenu,
+		  RevealChalkboard, 
+        ],
+
+
+    	allottedTime: 120 * 1000,
+
+		mathjax3: {
+			mathjax: 'plugin/math/mathjax/tex-mml-chtml.js',
+		},
+		markdown: {
+		  gfm: true,
+		  mangle: true,
+		  pedantic: false,
+		  smartLists: false,
+		  smartypants: false,
+		},
+
+		mermaid: {
+			theme: isLight ? 'default' : 'dark',
+		},
+
+		customcontrols: {
+			controls: [
+				{id: 'toggle-overview',
+				title: 'Toggle overview (O)',
+				icon: '<i class="fa fa-th"></i>',
+				action: 'Reveal.toggleOverview();'
+				},
+				{ icon: '<i class="fa fa-pen-square"></i>',
+				title: 'Toggle chalkboard (B)',
+				action: 'RevealChalkboard.toggleChalkboard();'
+				},
+				{ icon: '<i class="fa fa-pen"></i>',
+				title: 'Toggle notes canvas (C)',
+				action: 'RevealChalkboard.toggleNotesCanvas();'
+				},
+			]
+		},
+		menu: {
+			loadIcons: false
+		}
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"width":1920,"height":1080,"margin":0.04,"controls":true,"controlsLayout":"bottom-right","progress":true,"slideNumber":false,"center":"false","navigationMode":"linear","transition":"convex","transitionSpeed":"default"}, queryOptions);
+    </script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+
+  <!-- created with Advanced Slides -->
+</html>
